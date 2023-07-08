@@ -1,15 +1,34 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>{{ title }}</h1>
+    <br />
+    <div v-if="showModal">
+        <Modal theme="sale" @close="toggleModal">
+            <h1>DarkNet</h1>
+            <p>
+                Conducting DarkNet-related research will expose you to obscene
+                and graphic material. Please proceed with caution
+            </p>
+        </Modal>
+    </div>
+    <button @click="toggleModal">Open modal</button>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import Modal from './components/Modal.vue';
 
 export default {
     name: 'App',
-    components: {
-        HelloWorld,
+    components: { Modal },
+    data() {
+        return {
+            title: 'My first Vue App',
+            showModal: false,
+        };
+    },
+    methods: {
+        toggleModal() {
+            this.showModal = !this.showModal;
+        },
     },
 };
 </script>
@@ -20,7 +39,12 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: #3b4252;
     margin-top: 60px;
+}
+h1 {
+    display: inline-block;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
 }
 </style>
